@@ -1,18 +1,27 @@
-const navItems = ["/ABOUT", "/SKILLS", "/PROJECTS", "/STATS", "/CONTACT"];
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const navItems = ["/ABOUT", "/EXPERIENCE", "/SKILLS", "/PROJECTS", "/STATS", "/CONTACT"];
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id.replace("/", "").toLowerCase());
     el?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-background/90 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
         <div className="border border-foreground px-3 py-1 font-mono font-bold text-sm">
           GAURAV.exe
         </div>
-        <div className="hidden md:flex items-center gap-1">
+
+        {/* Desktop nav */}
+        <div className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
             <button
               key={item}
@@ -29,7 +38,47 @@ const Navbar = () => {
             HIRE ME
           </a>
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden p-2 border border-foreground"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden overflow-hidden border-t bg-background"
+          >
+            <div className="px-4 py-4 space-y-1">
+              {navItems.map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollTo(item)}
+                  className="block w-full text-left font-mono text-sm px-3 py-2.5 text-foreground hover:bg-foreground hover:text-background transition-colors"
+                >
+                  {item}
+                </button>
+              ))}
+              <a
+                href="mailto:gauravwaghmare95032@gmail.com"
+                className="block text-center mt-3 border-2 border-foreground bg-primary text-primary-foreground font-mono text-xs font-bold px-4 py-2.5 hover:bg-foreground hover:text-background transition-colors"
+              >
+                HIRE ME
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
