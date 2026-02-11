@@ -1,4 +1,6 @@
 import { ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedSection, { staggerContainer, staggerItem } from "./AnimatedSection";
 
 const projects = [
   {
@@ -29,45 +31,55 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="bg-primary py-24 px-6">
+    <section id="projects" className="bg-primary py-16 sm:py-24 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-sans text-6xl md:text-8xl font-extrabold text-primary-foreground mb-16 text-center">
-          SELECTED WORKS
-        </h2>
+        <AnimatedSection>
+          <h2 className="font-sans text-4xl sm:text-6xl md:text-8xl font-extrabold text-primary-foreground mb-10 sm:mb-16 text-center">
+            SELECTED WORKS
+          </h2>
+        </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid sm:grid-cols-2 gap-4 sm:gap-8"
+        >
           {projects.map((p) => (
-            <div
+            <motion.div
               key={p.title}
-              className="border-2 border-foreground bg-card p-6 hover:translate-y-[-4px] transition-transform"
+              variants={staggerItem}
+              whileHover={{ y: -4 }}
+              className="border-2 border-foreground bg-card p-4 sm:p-6 transition-transform"
             >
               <div className="flex items-start justify-between mb-3">
-                <h3 className="font-sans text-2xl font-bold text-card-foreground">{p.title}</h3>
+                <h3 className="font-sans text-xl sm:text-2xl font-bold text-card-foreground">{p.title}</h3>
                 <a
                   href={p.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-accent text-accent-foreground p-2 hover:bg-foreground hover:text-background transition-colors"
+                  className="bg-accent text-accent-foreground p-2 hover:bg-foreground hover:text-background transition-colors shrink-0"
                 >
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
-              <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-4">
+              <p className="font-mono text-[10px] sm:text-xs text-muted-foreground leading-relaxed mb-4">
                 {p.desc}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {p.tech.map((t) => (
                   <span
                     key={t}
-                    className="bg-foreground text-background font-mono text-[10px] font-bold px-3 py-1"
+                    className="bg-foreground text-background font-mono text-[9px] sm:text-[10px] font-bold px-2 sm:px-3 py-0.5 sm:py-1"
                   >
                     {t}
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
