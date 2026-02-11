@@ -22,7 +22,7 @@ const skills = [
 
 const TechStackSection = () => {
   return (
-    <section id="skills" className="terminal-bg grid-bg-dark py-16 sm:py-24 px-4 sm:px-6">
+    <section id="skills" className="terminal-bg py-16 sm:py-24 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <AnimatedSection>
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-10 sm:mb-12">

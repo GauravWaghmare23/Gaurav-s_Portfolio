@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const EducationSection = () => {
   return (
-    <section id="education" className="terminal-bg grid-bg-dark py-16 sm:py-24 px-4 sm:px-6">
+    <section id="education" className="terminal-bg py-16 sm:py-24 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         <AnimatedSection>
           <h2 className="font-sans text-4xl sm:text-5xl md:text-6xl font-bold mb-12 sm:mb-16 text-center">

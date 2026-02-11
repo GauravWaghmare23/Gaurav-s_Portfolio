@@ -43,22 +43,6 @@ const experiences = [
     desc: "Active member contributing to data science initiatives and student community building.",
     skills: ["Data Science", "Community Building"],
   },
-  {
-    role: "NeuraX Coding Community Head & Founder",
-    org: "Surjodaja College of Engineering",
-    type: "Leadership",
-    period: "Aug 2025 – Present",
-    desc: "Founded and leading the college's premier coding community, mentoring students in tech.",
-    skills: ["Leadership", "Management", "Community Building"],
-  },
-  {
-    role: "Event Coordinator",
-    org: "Technical Events",
-    type: "Volunteer",
-    period: "Jul 2025 – Dec 2025",
-    desc: "Coordinated technical events and workshops for the student community in Nagpur.",
-    skills: ["Event Management", "Coordination"],
-  },
 ];
 
 const ExperienceSection = () => {

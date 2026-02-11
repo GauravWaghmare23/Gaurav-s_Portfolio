@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="grid-bg py-16 sm:py-24 px-4 sm:px-6">
+    <section id="about" className="grid-bg-dark terminal-bg py-16 sm:py-24 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         {/* Avatar */}
         <AnimatedSection>
