@@ -132,14 +132,24 @@ const StatsSection = () => {
 
               <div className="flex items-center justify-between font-mono text-[9px] sm:text-[10px] text-muted-foreground">
                 <span>$ leetcode --p _</span>
-                <a
-                  href="https://leetcode.com/u/Gaurav_Waghmare/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-terminal-green text-terminal-green px-3 py-1 hover:bg-terminal-green hover:text-terminal-dark transition-colors"
-                >
-                  VIEW_LC →
-                </a>
+                <div className="flex gap-2">
+                  <a
+                    href="https://www.geeksforgeeks.org/user/gauravwaghmare23/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-terminal-green text-terminal-green px-3 py-1 hover:bg-terminal-green hover:text-terminal-dark transition-colors"
+                  >
+                    VIEW_GFG →
+                  </a>
+                  <a
+                    href="https://leetcode.com/u/Gaurav_Waghmare/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-terminal-green text-terminal-green px-3 py-1 hover:bg-terminal-green hover:text-terminal-dark transition-colors"
+                  >
+                    VIEW_LC →
+                  </a>
+                </div>
               </div>
             </motion.div>
           </AnimatedSection>
