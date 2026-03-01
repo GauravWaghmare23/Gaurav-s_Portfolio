@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import AnimatedSection, { staggerContainer, staggerItem } from "./AnimatedSection";
+import AnimatedSection from "./AnimatedSection";
 
 const blogs = [
   {
@@ -139,15 +139,14 @@ const BlogsSection = () => {
           </div>
         </AnimatedSection>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="space-y-4"
-        >
-          {visibleBlogs.map((blog) => (
-            <motion.div key={blog.id} variants={staggerItem}>
+        <div className="space-y-4">
+          {visibleBlogs.map((blog, index) => (
+            <motion.div
+              key={blog.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.06 }}
+            >
               <motion.div
                 whileHover={{ x: 4 }}
                 className="border border-terminal-border p-4 sm:p-6 cursor-pointer group"
@@ -211,7 +210,7 @@ const BlogsSection = () => {
               </motion.div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {blogs.length > 4 && (
           <AnimatedSection>
