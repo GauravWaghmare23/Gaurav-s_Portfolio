@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="grid-bg py-16 sm:py-24 px-4 sm:px-6">
+    <section id="contact" className="grid-bg py-16 sm:py-24 px-4 sm:px-6 reveal-on-scroll">
       <div className="max-w-4xl mx-auto text-center">
         <AnimatedSection>
           <h2 className="font-sans text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4">

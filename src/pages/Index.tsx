@@ -8,7 +8,6 @@ import ProjectsSection from "@/components/ProjectsSection";
 import BlogsSection from "@/components/BlogsSection";
 import StatsSection from "@/components/StatsSection";
 import ContactSection from "@/components/ContactSection";
-import AIChatWidget from "@/components/AIChatWidget";
 
 const Index = () => {
   return (
@@ -23,7 +22,6 @@ const Index = () => {
       <BlogsSection />
       <StatsSection />
       <ContactSection />
-      <AIChatWidget />
     </div>
   );
 };

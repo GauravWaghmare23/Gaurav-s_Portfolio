@@ -47,7 +47,7 @@ const experiences = [
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="grid-bg py-16 sm:py-24 px-4 sm:px-6">
+    <section id="experience" className="grid-bg py-16 sm:py-24 px-4 sm:px-6 reveal-on-scroll">
       <div className="max-w-5xl mx-auto">
         <AnimatedSection>
           <h2 className="font-sans text-4xl sm:text-5xl md:text-7xl font-extrabold mb-12 sm:mb-16 text-center">

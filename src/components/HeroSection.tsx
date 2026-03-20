@@ -29,7 +29,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-center"
+        className="text-center hero-title"
       >
         <span className="block font-sans font-extrabold text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight leading-none">
           FULL STACK
@@ -37,20 +37,33 @@ const HeroSection = () => {
         <span className="block font-sans font-extrabold text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight leading-none text-outline">
           DEVELOPER
         </span>
+        <div className="relative inline-block mt-6 sm:mt-10">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="bg-accent text-accent-foreground px-4 py-1.5 border-2 border-foreground shadow-[4px_4px_0px_hsl(var(--foreground))] -rotate-3 hover:rotate-0 transition-transform cursor-default flex items-center gap-2"
+          >
+            <span className="font-mono text-xs font-black uppercase tracking-[0.2em]">
+              AI/ML ENGINEER
+            </span>
+            <div className="w-1.5 h-1.5 rounded-full bg-accent-foreground animate-pulse" />
+          </motion.div>
+        </div>
       </motion.h1>
 
       {/* Tagline */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="mt-6 sm:mt-8 bg-primary px-4 sm:px-6 py-3 max-w-lg text-center"
+        transition={{ duration: 0.5, delay: 1.0 }}
+        className="mt-6 sm:mt-8 bg-primary px-4 sm:px-6 py-3 max-w-lg text-center shadow-[4px_4px_0px_hsl(var(--foreground))]"
       >
         <p className="font-mono text-xs sm:text-sm text-primary-foreground">
-          I build digital products that refuse to be boring.
+          I build intelligent digital products that refuse to be boring.
         </p>
         <p className="font-mono text-xs sm:text-sm text-primary-foreground mt-1">
-          React • Node.js • TypeScript • Python
+          React • Node.js • Python • TensorFlow • PyTorch
         </p>
       </motion.div>
 
@@ -65,34 +78,24 @@ const HeroSection = () => {
           href="https://github.com/GauravWaghmare23"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-foreground text-background font-mono text-xs font-bold px-6 py-3 hover:bg-primary hover:text-primary-foreground transition-colors border-2 border-foreground text-center"
+          className="bg-foreground text-background font-mono text-xs font-bold px-6 py-3 hover:bg-primary hover:text-primary-foreground transition-colors border-2 border-foreground text-center btn-hover-effect"
         >
           VIEW GITHUB
         </a>
         <a
           href="mailto:gauravwaghmare95032@gmail.com"
-          className="bg-background text-foreground font-mono text-xs font-bold px-6 py-3 border-2 border-foreground hover:bg-foreground hover:text-background transition-colors text-center"
+          className="bg-background text-foreground font-mono text-xs font-bold px-6 py-3 border-2 border-foreground hover:bg-foreground hover:text-background transition-colors text-center btn-hover-effect"
         >
           ✉ CONTACT ME
         </a>
         <a
           href="/resume.pdf"
           download
-          className="bg-accent text-accent-foreground font-mono text-xs font-bold px-6 py-3 border-2 border-foreground hover:bg-foreground hover:text-background transition-colors text-center flex items-center justify-center gap-2"
+          className="bg-accent text-accent-foreground font-mono text-xs font-bold px-6 py-3 border-2 border-foreground hover:bg-foreground hover:text-background transition-colors text-center flex items-center justify-center gap-2 btn-hover-effect"
         >
           <Download className="w-3.5 h-3.5" />
           DOWNLOAD RESUME
         </a>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 animate-bounce"
-      >
-        <ArrowDown className="w-5 h-5 text-muted-foreground" />
       </motion.div>
     </section>
   );

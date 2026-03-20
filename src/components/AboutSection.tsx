@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="grid-bg-dark terminal-bg py-16 sm:py-24 px-4 sm:px-6">
+    <section id="about" className="grid-bg-dark terminal-bg py-16 sm:py-24 px-4 sm:px-6 reveal-on-scroll">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         {/* Avatar */}
         <AnimatedSection>
@@ -12,7 +12,7 @@ const AboutSection = () => {
             <span className="absolute top-2 left-4 bg-destructive text-destructive-foreground font-mono text-[10px] px-2 py-0.5 font-bold">
               AVATAR.JPG
             </span>
-            <img src={avatar} alt="Gaurav Waghmare" className="w-full grayscale" />
+            <img src={avatar} alt="Gaurav Waghmare" className="w-full h-[400px] object-cover grayscale" />
           </div>
         </AnimatedSection>
 
@@ -20,9 +20,9 @@ const AboutSection = () => {
         <AnimatedSection delay={0.2}>
           <h2 className="font-sans text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6">WHO AM I?</h2>
           <p className="font-mono text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
-            I am Gaurav Waghmare. A full-stack developer and 3rd-year B.Tech CSE student who
+            I am Gaurav Waghmare. An <span className="highlight-yellow font-bold text-black uppercase">AI/ML & Full-stack engineer</span> and 3rd-year B.Tech CSE student who
             believes the web has become too sanitized. I bring{" "}
-            <span className="highlight-yellow font-bold">personality</span> back to code.
+            <span className="font-bold underline decoration-accent decoration-2 underline-offset-4">personality</span> back to code.
           </p>
           <div className="border-l-2 border-foreground pl-4 space-y-1 font-mono text-xs sm:text-sm mb-6 sm:mb-8">
             <p>&gt; Specialized in MERN Stack & AI-powered Web Apps.</p>

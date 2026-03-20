@@ -1,22 +1,45 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const navItems = ["/ABOUT", "/EXPERIENCE", "/SKILLS", "/PROJECTS", "/BLOGS", "/STATS", "/CONTACT"];
+const navItems = [
+  { label: "ABOUT", id: "about" },
+  { label: "EXPERIENCE", id: "experience" },
+  { label: "SKILLS", id: "tech-stack" },
+  { label: "PROJECTS", id: "projects" },
+  { label: "BLOGS", id: "blogs" },
+  { label: "STATS", id: "stats" },
+  { label: "CONTACT", id: "contact" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id.replace("/", "").toLowerCase());
-    el?.scrollIntoView({ behavior: "smooth" });
+  const handleNav = (id: string) => {
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
     setIsOpen(false);
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-background/90 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
-        <div className="border border-foreground px-3 py-1 font-mono font-bold text-sm">
+        <div 
+          onClick={() => {
+            if (location.pathname !== "/") navigate("/");
+            else window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="border border-foreground px-3 py-1 font-mono font-bold text-sm cursor-pointer hover:bg-foreground hover:text-background transition-colors"
+        >
           GAURAV.exe
         </div>
 
@@ -24,11 +47,11 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
             <button
-              key={item}
-              onClick={() => scrollTo(item)}
+              key={item.id}
+              onClick={() => handleNav(item.id)}
               className="font-mono text-xs px-3 py-1.5 text-foreground hover:bg-foreground hover:text-background transition-colors"
             >
-              {item}
+              /{item.label}
             </button>
           ))}
           <a
@@ -62,11 +85,11 @@ const Navbar = () => {
             <div className="px-4 py-4 space-y-1">
               {navItems.map((item) => (
                 <button
-                  key={item}
-                  onClick={() => scrollTo(item)}
+                  key={item.id}
+                  onClick={() => handleNav(item.id)}
                   className="block w-full text-left font-mono text-sm px-3 py-2.5 text-foreground hover:bg-foreground hover:text-background transition-colors"
                 >
-                  {item}
+                  /{item.label}
                 </button>
               ))}
               <a

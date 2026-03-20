@@ -5,32 +5,32 @@ import AnimatedSection, { staggerContainer, staggerItem } from "./AnimatedSectio
 
 const projects = [
   {
-    title: "CODEJARVIS",
-    slug: "codejarvis",
-    desc: "An AI-powered coding agent with multi-team collaboration, intelligent code suggestions, and agentic workflows for automating dev tasks.",
-    tech: ["React", "Node.js", "AI/ML", "TypeScript", "Socket.io"],
-    link: "https://github.com/GauravWaghmare23/CodeJarvis",
-  },
-  {
-    title: "HYPECHAT",
-    slug: "hypechat",
-    desc: "A real-time chat application for mobile and web using Socket.io with instant messaging, typing indicators, and cross-platform support.",
-    tech: ["React Native", "Node.js", "Socket.io", "MongoDB"],
-    link: "https://github.com/GauravWaghmare23/HypeChat",
-  },
-  {
-    title: "UBER CLONE",
-    slug: "uber-clone",
-    desc: "Full-stack Uber-style ride-hailing app with real-time tracking, fare calculation, JWT auth, and payment integration.",
-    tech: ["React", "Node.js", "MongoDB", "Socket.io"],
-    link: "https://github.com/GauravWaghmare23/UBER",
+    title: "CODE STUDIO AI",
+    slug: "code-studio-ai",
+    desc: "Full-stack collaborative AI-powered coding platform with real-time team synchronization and secure project management.",
+    tech: ["React", "Node.js", "MongoDB", "Socket.io", "AI/ML"],
+    link: "https://github.com/GauravWaghmare23/Code-Studio-Ai",
   },
   {
     title: "AGRITRACE",
     slug: "agritrace",
-    desc: "Agricultural supply-chain platform with role-based dashboards, QR-based crop traceability, and farm-to-consumer tracking.",
-    tech: ["Next.js", "TypeScript", "MongoDB", "REST API"],
-    link: "https://github.com/GauravWaghmare23/Crop-Tracking-App",
+    desc: "Next-gen Agricultural Supply Chain Management system with real-time crop tracking and QR-based traceability.",
+    tech: ["Next.js", "TypeScript", "MongoDB", "Node.js"],
+    link: "https://github.com/GauravWaghmare23/AgriTrace",
+  },
+  {
+    title: "UBER CLONE",
+    slug: "uber-clone",
+    desc: "A comprehensive full-stack ride-hailing platform with real-time passenger-driver matching using Socket.io and GSAP.",
+    tech: ["React", "Node.js", "MongoDB", "Socket.io", "GSAP"],
+    link: "https://github.com/GauravWaghmare23/UBER",
+  },
+  {
+    title: "GAURAV.EXE",
+    slug: "gaurav-exe",
+    desc: "Premium developer portfolio hub built with a brutalist aesthetic, smooth animations, and optimized for high performance.",
+    tech: ["React", "TypeScript", "GSAP", "Framer Motion", "Tailwind CSS"],
+    link: "https://github.com/GauravWaghmare23/gaurav.exe",
   },
 ];
 
@@ -38,7 +38,7 @@ const ProjectsSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="projects" className="bg-primary py-16 sm:py-24 px-4 sm:px-6">
+    <section id="projects" className="bg-primary py-16 sm:py-24 px-4 sm:px-6 reveal-on-scroll">
       <div className="max-w-6xl mx-auto">
         <AnimatedSection>
           <h2 className="font-sans text-4xl sm:text-6xl md:text-8xl font-extrabold text-primary-foreground mb-10 sm:mb-16 text-center">
