@@ -2,16 +2,31 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
+interface Section {
+  title: string;
+  content: string | string[] | { label: string; value: string }[];
+  type?: "list" | "text" | "grid" | "tree";
+}
+
 const projects: Record<string, {
   title: string;
   tagline: string;
   overview: string;
   problem?: string;
-  productSelling: string[]; // Business value / Selling points
-  technicalTerms: string[]; // Technical architecture / Implementation details
+  productSelling: string[];
+  technicalTerms: string[];
   features: { category: string; items: string[] }[];
   tech: string[];
   link: string;
+  // Extended details
+  details?: {
+    techStack?: { frontend: string[]; backend: string[] };
+    repoLayout?: { name: string; items: string[] }[];
+    authFlow?: { step: number; desc: string }[];
+    apiReference?: { category: string; endpoints: { method: string; path: string; desc: string }[] }[];
+    collaboration?: string;
+    deployment?: string[];
+  };
 }> = {
   agritrace: {
     title: "AGRITRACE",
@@ -88,7 +103,7 @@ const projects: Record<string, {
   "code-studio-ai": {
     title: "CODE STUDIO AI",
     tagline: "Collaborative AI Coding Platform",
-    overview: "A production-ready collaborative coding environment designed for modern developer teams. Features real-time synchronization and secure project sandboxing.",
+    overview: "Code Studio AI is a production-ready collaborative coding environment designed for modern developer teams. It features real-time synchronization, secure project sandboxing, and a robust micro-service architecture built with React 19 and Express 5.",
     productSelling: [
       "Instant real-time collaboration for remote development teams",
       "Secure project management with granular access control",
@@ -107,6 +122,40 @@ const projects: Record<string, {
     ],
     tech: ["React 19", "Vite", "Node.js", "Express 5", "MongoDB", "Socket.io"],
     link: "https://github.com/GauravWaghmare23/Code-Studio-Ai",
+    details: {
+      techStack: {
+        frontend: ["React 19", "Vite", "Tailwind CSS", "Socket.io-client", "Axios", "React Router 7"],
+        backend: ["Node.js (ESM)", "Express 5", "MongoDB", "Mongoose", "Socket.IO", "JWT", "Bcrypt"]
+      },
+      repoLayout: [
+        { name: "client/src", items: ["App.jsx", "context/", "config/", "pages/ (Login, Register, Home, Project)"] },
+        { name: "server", items: ["app.js", "server.js", "controllers/", "middlewares/", "models/", "routes/"] }
+      ],
+      authFlow: [
+        { step: 1, desc: "User registers via POST /users/register with input validation." },
+        { step: 2, desc: "User logs in via POST /users/login; server returns JWT in a secure signed cookie." },
+        { step: 3, desc: "authenticateJWT middleware validates the token for all protected API routes." },
+        { step: 4, desc: "Logout clears the authentication cookie and revokes the session." }
+      ],
+      apiReference: [
+        { category: "Users", endpoints: [
+          { method: "POST", path: "/users/register", desc: "Register a new account" },
+          { method: "POST", path: "/users/login", desc: "Authenticate and set JWT cookie" },
+          { method: "GET", path: "/users/profile", desc: "Fetch current user profile (Protected)" }
+        ]},
+        { category: "Projects", endpoints: [
+          { method: "POST", path: "/projects/create", desc: "Create a new project" },
+          { method: "GET", path: "/projects/list", desc: "List user projects" },
+          { method: "PUT", path: "/projects/add-users", desc: "Manage collaborators" }
+        ]}
+      ],
+      collaboration: "Leverages Socket.IO for low-latency, bi-directional communication. Each project operates in an isolated room identified by its MongoDB ID, ensuring message privacy and efficient broadcasting.",
+      deployment: [
+        "Frontend: Built with Vite, optimized for static hosting.",
+        "Backend: Node.js server with environment-specific configurations.",
+        "Database: MongoDB Atlas with IP allowlisting and encrypted URI."
+      ]
+    }
   },
 };
 
@@ -239,6 +288,143 @@ const ProjectDetail = () => {
               ))}
             </div>
           </div>
+
+          {/* Extended Details Section */}
+          {project.details && (
+            <div className="space-y-24 mb-20">
+              {/* Tech Stack Grid */}
+              {project.details.techStack && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="font-sans text-3xl font-black mb-8 flex items-center gap-4">
+                    <span className="w-12 h-[4px] bg-primary" />
+                    DEEP TECH STACK
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="bg-muted/30 p-8 border-l-4 border-foreground">
+                      <h4 className="font-mono text-xs font-bold text-primary mb-6 uppercase tracking-widest">// Frontend Core</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.details.techStack.frontend.map((t, i) => (
+                          <span key={i} className="bg-foreground text-background font-mono text-[10px] sm:text-xs px-3 py-1 font-bold italic">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="bg-muted/30 p-8 border-l-4 border-primary">
+                      <h4 className="font-mono text-xs font-bold text-primary mb-6 uppercase tracking-widest">// Backend Infrastructure</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.details.techStack.backend.map((t, i) => (
+                          <span key={i} className="bg-primary text-primary-foreground font-mono text-[10px] sm:text-xs px-3 py-1 font-bold italic">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Repo Layout / Blueprint */}
+              {project.details.repoLayout && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="font-sans text-3xl font-black mb-8 flex items-center gap-4">
+                    <span className="w-12 h-[4px] bg-primary" />
+                    REPOSITORY BLUEPRINT
+                  </h3>
+                  <div className="bg-[#121212] p-6 sm:p-10 font-mono text-[10px] sm:text-xs leading-loose border-2 border-foreground/10 relative">
+                    <div className="absolute top-4 right-6 flex gap-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
+                    </div>
+                    {project.details.repoLayout.map((dir, i) => (
+                      <div key={i} className="mb-4">
+                        <span className="text-primary font-bold">└── {dir.name}</span>
+                        <div className="pl-6 border-l border-foreground/20 ml-2 mt-1 space-y-1">
+                          {dir.items.map((item, j) => (
+                            <div key={j} className="text-muted-foreground">├── {item}</div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Auth & API Reference */}
+              <div className="grid lg:grid-cols-5 gap-12">
+                <div className="lg:col-span-2 space-y-8">
+                  <h3 className="font-sans text-3xl font-black flex items-center gap-4">
+                    <span className="w-8 h-[4px] bg-primary" />
+                    AUTH FLOW
+                  </h3>
+                  <div className="space-y-6">
+                    {project.details.authFlow?.map((f, i) => (
+                      <div key={i} className="flex gap-4 group">
+                        <span className="font-sans text-4xl font-black text-foreground/10 group-hover:text-primary transition-colors italic">0{f.step}</span>
+                        <p className="font-mono text-xs sm:text-sm text-muted-foreground leading-relaxed pt-2">
+                          {f.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="lg:col-span-3 space-y-8">
+                  <h3 className="font-sans text-3xl font-black flex items-center gap-4">
+                    <span className="w-8 h-[4px] bg-primary" />
+                    API REFERENCE
+                  </h3>
+                  <div className="space-y-4">
+                    {project.details.apiReference?.map((cat, i) => (
+                      <div key={i} className="border-2 border-foreground/5 p-5 hover:border-primary/50 transition-colors">
+                        <h4 className="font-mono text-[10px] font-black text-primary mb-4 uppercase tracking-widest">{cat.category}</h4>
+                        <div className="space-y-3">
+                          {cat.endpoints.map((ep, j) => (
+                            <div key={j} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-foreground/5 pb-2 last:border-0 last:pb-0">
+                              <code className="text-[10px] sm:text-xs">
+                                <span className="text-primary font-bold mr-2 uppercase">{ep.method}</span>
+                                <span className="text-muted-foreground">{ep.path}</span>
+                              </code>
+                              <span className="font-mono text-[9px] text-muted-foreground italic text-right">{ep.desc}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Collaboration Highlight */}
+              {project.details.collaboration && (
+                <div className="bg-primary text-primary-foreground p-8 sm:p-12 relative overflow-hidden">
+                   <div className="absolute top-0 left-0 w-full h-full bg-grid-white/[0.05]" />
+                   <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+                     <div className="shrink-0">
+                        <div className="w-20 h-20 rounded-full border-4 border-dashed border-primary-foreground/30 flex items-center justify-center animate-spin-slow">
+                          <div className="w-4 h-4 bg-primary-foreground rounded-full animate-pulse" />
+                        </div>
+                     </div>
+                     <div>
+                       <h4 className="font-sans text-2xl font-black mb-4 italic tracking-tight uppercase">Real-Time Core</h4>
+                       <p className="font-mono text-sm leading-relaxed text-primary-foreground/80">
+                         {project.details.collaboration}
+                       </p>
+                     </div>
+                   </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Problem Statement Detail */}
           {project.problem && (
